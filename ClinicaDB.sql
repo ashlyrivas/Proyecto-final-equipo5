@@ -1,8 +1,5 @@
--- ==============================================
--- Script seguro T-SQL: borra en orden correcto y crea la BD y tablas
--- ==============================================
 
--- 1) Crear la base de datos si no existe
+-- 1) Crear la base de datos
 IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'ClinicaDB')
 BEGIN
     CREATE DATABASE ClinicaDB;
@@ -94,7 +91,7 @@ CREATE TABLE Medico (
 );
 GO
 
--- Agregar FKs de Medico despuÈs para evitar problemas si tablas no estaban a˙n listas
+-- Agregar FKs de Medico despu√©s para evitar problemas si tablas no estaban a√∫n listas
 ALTER TABLE Medico
     ADD CONSTRAINT FK_Medico_Especialidad FOREIGN KEY (especialidad_id)
         REFERENCES Especialidad(id_especialidad)
@@ -156,7 +153,7 @@ ALTER TABLE Usuario
         ON DELETE SET NULL;
 GO
 
--- 4) Õndices ˙tiles (opcionales)
+-- 4) √çndices √∫tiles (opcionales)
 CREATE INDEX IDX_Paciente_Nombre ON Paciente(nombre);
 CREATE INDEX IDX_Paciente_Apellido ON Paciente(apellido);
 CREATE INDEX IDX_Medico_Nombre ON Medico(nombre);
@@ -166,3 +163,4 @@ GO
 -- Script finalizado
 PRINT 'Tablas creadas correctamente en ClinicaDB';
 GO
+
